@@ -30,8 +30,8 @@ import './style.css'
     targetSlide.classList.add('current-slide');
   }
   
-  // 2. Al hacer clic en la flecha derecha, muévete a la siguiente diapositiva
-  nextButton.addEventListener('click', e => {
+  // 2. Lógica para la flecha derecha (compatible con móvil y escritorio)
+  const handleNextClick = () => {
     const currentSlide = carouselTrack.querySelector('.current-slide') || slides[0];
     let nextSlide = currentSlide.nextElementSibling;
     // Si es la última, vuelve a la primera (efecto loop)
@@ -39,10 +39,22 @@ import './style.css'
       nextSlide = slides[0];
     }
     moveToSlide(carouselTrack, currentSlide, nextSlide);
+  };
+
+  // Evento para pantallas táctiles (móviles)
+  nextButton.addEventListener('touchend', e => {
+    // Previene el "clic fantasma" que algunos móviles disparan después de un toque
+    e.preventDefault();
+    handleNextClick();
+  });
+
+  // Evento para clics de mouse (escritorio)
+  nextButton.addEventListener('click', e => {
+    handleNextClick();
   });
 
   // 3. Al hacer clic en la flecha izquierda, muévete a la diapositiva anterior
-  prevButton.addEventListener('click', e => {
+  const handlePrevClick = () => {
     const currentSlide = carouselTrack.querySelector('.current-slide') || slides[0];
     let prevSlide = currentSlide.previousElementSibling;
     // Si es la primera, ve a la última (efecto loop)
@@ -50,6 +62,18 @@ import './style.css'
       prevSlide = slides[slides.length - 1];
     }
     moveToSlide(carouselTrack, currentSlide, prevSlide);
+  };
+
+  // Evento para pantallas táctiles (móviles)
+  prevButton.addEventListener('touchend', e => {
+    // Previene el "clic fantasma"
+    e.preventDefault();
+    handlePrevClick();
+  });
+
+  // Evento para clics de mouse (escritorio)
+  prevButton.addEventListener('click', e => {
+    handlePrevClick();
   });
 
   // Inicializa la primera diapositiva como la actual
