@@ -197,8 +197,9 @@ main section {
 /* --- GALLERY SECTION --- */
 /* Estilos básicos. El JS le dará la funcionalidad completa. */
 .carousel {
-  position: relative;
+  position: relative; /* ADD THIS LINE */
   overflow: hidden;
+  z-index: 1;         /* AND ADD THIS LINE */
 }
 
 .carousel-track {
