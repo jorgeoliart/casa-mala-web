@@ -196,38 +196,22 @@ main section {
 
 /* --- GALLERY SECTION --- */
 /* Estilos básicos. El JS le dará la funcionalidad completa. */
-.carousel {
-  position: relative; /* ADD THIS LINE */
-  overflow: hidden;
-  z-index: 1;         /* AND ADD THIS LINE */
+.stacked-gallery {
+  display: grid;
+  grid-template-columns: 1fr; /* Una sola columna */
+  gap: 25px; /* Espacio entre las fotos */
+  
+  /* Para que no se vea excesivamente ancho en pantallas grandes */
+  max-width: 800px; 
+  margin: 0 auto; /* Centra la galería */
 }
 
-.carousel-track {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.carousel-track img {
+.stacked-gallery img {
   width: 100%;
-  flex-shrink: 0;
+  height: auto; /* Mantiene la proporción de la imagen */
+  border-radius: 5px; /* Suaviza las esquinas */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Le da profundidad */
 }
-
-.carousel-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.8);
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  z-index: 10;
-}
-
-.carousel-button.prev { left: 15px; }
-.carousel-button.next { right: 15px; }
 
 /* --- LOCATION SECTION --- */
 .location-section .container p {
